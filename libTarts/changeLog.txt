@@ -1,0 +1,20 @@
+Tarts Library Change Log - (to explain what changed and why)
+
+V1.0  Initial Release Dec-11, 2014
+
+V1.1  Maintenance Update Jan-23, 2015
+  - Sensor Data Messages did not include any wireless device status like 
+    received signal strength indicator (RSSI) or battery voltage.  To address
+    this, the "SensorMessageEvent" callback parameters have been changed to address
+    single class called "SensorMessage" that contains the sensorID string, RSSI,
+    battery voltage, a list of datums, and the number of datums available.  
+    Application Sketches or examples have been updated to use this new callback
+  - In Raspberry Pi and BeagleboneBlack Platforms: The Serial Read Thread now
+    sleeps 10ms between read attempts.  This is to lighten the processor load.
+  - Makefiles changed to reflect the new version of library.
+  - Negative temperature values would report as -9.-3C.  Tilt values as well. Bug fixed in four sensor types: Temp, Water Temp, Humidity, Tilt.
+  - Demo Applications were modified: to include water rope where needed, to print out RSSI and Battery Voltage, and to sleep for 100 ms inbetween loops.
+  
+    
+    
+
