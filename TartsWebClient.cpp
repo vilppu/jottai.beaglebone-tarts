@@ -347,7 +347,9 @@ void RegisterSensor(TartsSensorBase* sensor, const char* sensorID, const char* s
         int channel = Tarts.FindGateway(GatewayId)->getOperatingChannel();
         printf("ACTIVE - Channel: %d\n", channel);
         SendGatewayActiveOnChannelEvent(channel);
-    }    
+    }
+
+    fflush(stdout);
 }
 
 void OnSensorMessageReceived(SensorMessage* msg)
@@ -364,6 +366,7 @@ void OnSensorMessageReceived(SensorMessage* msg)
     }
 
     printf("\n");
+    fflush(stdout);
 
     SendSensorDataEvent(msg);
 }
