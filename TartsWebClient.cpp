@@ -130,7 +130,7 @@ void SendHttpPostWithJsonBody(const std::stringstream& json)
         }
         else
         {
-            std::cout<<"Posted: "<<content<<std::endl;
+            // std::cout<<"Posted: "<<content<<std::endl;
         }
 
         curl_easy_cleanup(curl);
