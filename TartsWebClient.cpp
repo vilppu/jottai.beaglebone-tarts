@@ -124,7 +124,15 @@ void SendHttpPostWithJsonBody(const std::stringstream& json)
         {
             std::cerr<<"curl_easy_perform() failed: "<<curl_easy_strerror(res)<<std::endl;
         }
-        
+        else if (httpStatusCode != 201)
+        {
+            std::cerr<<"HTTP post failed with status code: "<<httpStatusCode<<std::endl;
+        }
+        else
+        {
+            std::cout<<"Posted: "<<content<<std::endl;
+        }
+
         curl_easy_cleanup(curl);
         curl_slist_free_all(headers);
     }
