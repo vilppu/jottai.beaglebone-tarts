@@ -8,8 +8,8 @@
  *   found at www.tartssensors.com/licenses                                       *
  **********************************************************************************
  *   Modified:   Timo Vilppu, January 2018                                        *
- *               HTTP support using libcurl for sensing events to yog-robot agent *
- *               https://github.com/vilppu/yog-robot.agent                        *
+ *               HTTP support using libcurl for sensing events to jottai agent *
+ *               https://github.com/vilppu/jottai.agent                        *
  *********************************************************************************/
 
 #include <Tarts.h>
@@ -41,7 +41,7 @@ void WaitUntilWebApiIsAvailable()
 {    
     CURL *curl;
     CURLcode res;
-    const char* apiHost = getenv("YOG_API_HOST");
+    const char* apiHost = getenv("JOTTAI_API_HOST");
 
     curl = curl_easy_init();
     if(curl)
@@ -77,9 +77,9 @@ void SendHttpPostWithJsonBody(const std::stringstream& json)
 {    
     CURL *curl;
     CURLcode res;
-    const char* apiHost = getenv("YOG_API_HOST");
-    const char* apiKey = getenv("YOG_API_KEY");
-    const char* apiBotId = getenv("YOG_BOT_ID");
+    const char* apiHost = getenv("JOTTAI_API_HOST");
+    const char* apiKey = getenv("JOTTAI_API_KEY");
+    const char* apiBotId = getenv("JOTTAI_ID");
 
     curl = curl_easy_init();
     if(curl)
@@ -88,8 +88,8 @@ void SendHttpPostWithJsonBody(const std::stringstream& json)
         struct curl_slist *headers = NULL;
         const std::string& jsonString = json.str();
         const char* content = jsonString.c_str();
-        std::string apiKeyHeader("yog-robot-sensor-data-key: ");
-        std::string apiBotIdHeader("yog-robot-bot-id: ");
+        std::string apiKeyHeader("jottai-sensor-data-key: ");
+        std::string apiBotIdHeader("jottai-bot-id: ");
         
         if(apiKey != 0)
         {
