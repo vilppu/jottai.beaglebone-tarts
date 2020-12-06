@@ -182,14 +182,14 @@ void SendGatewayActiveOnChannelEvent(int channel)
     SendHttpPostWithJsonBody(json);
 }
 
-void SendSensorUpEvent(const char* sensorId, const char* sensorName)
+void SendSensorUpEvent(const char* deviceId, const char* sensorName)
 {       
     std::stringstream json;
 
     json
     <<"{ "
     <<"  \"event\": \"sensor up\","
-    <<"  \"sensorId\": \""<<sensorId<<"\","
+    <<"  \"deviceId\": \""<<deviceId<<"\","
     <<"  \"gatewayId\": \""<<GatewayId<<"\","
     <<"  \"sensorName\": \""<<sensorName<<"\""
     <<"}";
@@ -204,7 +204,7 @@ void SendSensorDataEvent(const SensorMessage* msg)
     json
     <<"{ "
     <<"  \"event\": \"sensor data\","
-    <<"  \"sensorId\": \""<<msg->ID<<"\","
+    <<"  \"deviceId\": \""<<msg->ID<<"\","
     <<"  \"gatewayId\": \""<<GatewayId<<"\","
     <<"  \"data\": [";
 
