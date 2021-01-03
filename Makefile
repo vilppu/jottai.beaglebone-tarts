@@ -17,7 +17,7 @@ DEBUG	= 	-O3
 CC	= 	g++
 INCLUDE	= 	-I. -I/usr/local/include -I./libTarts -I./libWiringBBB
 DEFS	= 	-DBB_BLACK_ARCH
-CFLAGS	= 	$(DEBUG) $(DEFS) -Wall $(INCLUDE) -pipe
+CFLAGS	= 	$(DEBUG) $(DEFS) -std=c++17 -Wall $(INCLUDE) -pipe
 LDLIBS  = 	-L/usr/local/lib -L./libTarts -L./libWiringBBB -lwiringBBB -lTarts -lpthread -lm -lrt -lcurl
 
 SRC	=	TartsWebClient.cpp

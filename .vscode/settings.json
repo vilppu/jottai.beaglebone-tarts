@@ -34,6 +34,14 @@
         "xstddef": "cpp",
         "xstring": "cpp",
         "xtr1common": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "atomic": "cpp",
+        "cctype": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "tuple": "cpp",
+        "xmemory": "cpp"
     }
 }
