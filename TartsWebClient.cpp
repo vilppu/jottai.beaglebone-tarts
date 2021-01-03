@@ -80,7 +80,7 @@ void SendDeviceDataEvent(const SensorMessage *msg)
         }
     }
 
-    json << "}";
+    json << "]}";
 
     http.EnqueueHttpMessageToAgent(HttpRequest("device-data", json, true, 20));
 }
