@@ -1,3 +1,8 @@
+#include <curl/curl.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <signal.h>
+
 #include <condition_variable>
 #include <chrono>
 #include <functional>
@@ -12,7 +17,6 @@
 #include <thread>
 
 std::string accessToken = "";
-bool exiting = false;
 
 struct HttpRequest
 {
