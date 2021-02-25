@@ -1,22 +1,19 @@
 #include <curl/curl.h>
 #include <stdint.h>
 #include <unistd.h>
-#include <signal.h>
 
 #include <condition_variable>
-#include <chrono>
-#include <functional>
 #include <iostream>
 #include <list>
 #include <map>
 #include <mutex>
-#include <optional>
 #include <sstream>
 #include <queue>
 #include <regex>
 #include <thread>
 
 std::string accessToken = "";
+bool exiting = false;
 
 struct HttpRequest
 {
@@ -201,7 +198,6 @@ std::tuple<long, const std::string> TryToSendToAgent(HttpRequest request)
 
 std::tuple<long, const std::string> SendToAgent(HttpRequest request)
 {
-    int httpStatusCode = 0;
     int maxTries = 5;
 
     for (int i = 0; i < maxTries; i++)

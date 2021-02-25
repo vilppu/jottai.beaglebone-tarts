@@ -20,7 +20,7 @@
 #include <curl/curl.h>
 #include <signal.h>
 #include <stdlib.h>
-#include "Http.cpp"
+#include "http.cpp"
 
 /**********************************************************************************
  *BEAGLEBONE BLACK PLATFORM-SPECIFIC DEFINITIONS
