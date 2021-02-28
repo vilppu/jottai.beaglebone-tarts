@@ -17,10 +17,10 @@ bool exiting = false;
 
 struct HttpRequest
 {
-    const bool isPost;
-    const long timeout;
     const std::string path;
     const std::string jsonContent;
+    const bool isPost;
+    const long timeout;
 
     HttpRequest(const std::string path, const std::string jsonContent, bool isPost, long timeout)
         : path(path), jsonContent(jsonContent), isPost(isPost), timeout(timeout)
