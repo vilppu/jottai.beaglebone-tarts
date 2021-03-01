@@ -50,6 +50,22 @@ std::string CurrentTime()
     return std::string(currentTimeBuffer);
 }
 
+std::string GetValue(const Datum &datum)
+{
+    if (datum.Name == std::string("RH"))
+    {
+        return std::to_string(std::stof(datum.Value) / 100.0f);
+    }
+    else if (datum.Name == std::string("TEMPERATURE"))
+    {
+        return std::to_string(std::stof(datum.Value) / 10.0f);
+    }
+    else
+    {
+        return datum.Value;
+    }
+}
+
 void SendDeviceDataEvent(const SensorMessage *msg)
 {
     std::stringstream json;
@@ -70,7 +86,7 @@ void SendDeviceDataEvent(const SensorMessage *msg)
             << "  {"
             << "    \"propertyType\": \"Sensor\","
             << "    \"propertyName\": \"" << msg->DatumList[i].Name << "\","
-            << "    \"value\": \"" << msg->DatumList[i].Value << "\","
+            << "    \"value\": \"" << GetValue(msg->DatumList[i]) << "\","
             << "    \"formattedValue\": \"" << msg->DatumList[i].FormattedValue << "\""
             << "  }";
 
