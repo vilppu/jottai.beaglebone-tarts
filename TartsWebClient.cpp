@@ -50,6 +50,38 @@ std::string CurrentTime()
     return std::string(currentTimeBuffer);
 }
 
+std::string GetPropertyType(const Datum &datum)
+{
+    if (datum.Name == std::string("RH"))
+    {
+        return std::string("RelativeHumidity");
+    }
+    else if (datum.Name == std::string("TEMPERATURE"))
+    {
+        return std::string("Temperature");
+    }
+    else if (datum.Name == std::string("CONTACT"))
+    {
+        return std::string("Contact");
+    }
+    else if (datum.Name == std::string("DETECT"))
+    {
+        return std::string("PresenceOfWater");
+    }
+    else if (datum.Name == std::string("PIR"))
+    {
+        return std::string("Motion");
+    }
+    else if (datum.Name == std::string("ACTIVITY"))
+    {
+        return std::string("Motion");
+    }
+    else
+    {
+        return std::string(datum.Name);
+    }
+}
+
 std::string GetValue(const Datum &datum)
 {
     if (datum.Name == std::string("RH"))
@@ -63,6 +95,22 @@ std::string GetValue(const Datum &datum)
     else
     {
         return datum.Value;
+    }
+}
+
+std::string GetValueType(const Datum &datum)
+{
+    if (datum.Name == std::string("RH"))
+    {
+        return std::string("Decimal");
+    }
+    else if (datum.Name == std::string("Temperature"))
+    {
+        return std::string("Decimal");
+    }
+    else
+    {
+        return std::string("Integer");
     }
 }
 
@@ -84,10 +132,12 @@ void SendDeviceDataEvent(const SensorMessage *msg)
     {
         json
             << "  {"
-            << "    \"propertyType\": \"Sensor\","
+            << "    \"propertyId\": \"" << msg->DatumList[i].Name << "\","
+            << "    \"propertyType\": \"" << GetPropertyType(msg->DatumList[i]) << "\","
             << "    \"propertyName\": \"" << msg->DatumList[i].Name << "\","
-            << "    \"value\": \"" << GetValue(msg->DatumList[i]) << "\","
-            << "    \"formattedValue\": \"" << msg->DatumList[i].FormattedValue << "\""
+            << "    \"propertyDescription\": \"" << msg->DatumList[i].Name << "\","
+            << "    \"valueType\": \"" << GetValueType(msg->DatumList[i]) << "\","
+            << "    \"value\": \"" << GetValue(msg->DatumList[i]) << "\""
             << "  }";
 
         if (i != (msg->DatumCount - 1))
