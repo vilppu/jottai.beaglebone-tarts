@@ -208,7 +208,9 @@ void OnGatewayMessageReceived(const char *gID, int stringID)
         TartsGateway *gateway = Tarts.FindGateway(GatewayId);
         strncpy(thisSensorID, gateway->getLastUnknownID(), sizeof(thisSensorID));
         thisSensorType = gateway->getLastUnknownSensorType();
-        if (thisSensorID > 0 && thisSensorType > 0)
+        intptr_t sensorId = reinterpret_cast<intptr_t>(thisSensorID);
+
+        if (sensorId > 0 && thisSensorType > 0)
         {
             std::cout << "Found sensor: " << thisSensorID << " type " << thisSensorType << std::endl;
             CreateSensor(thisSensorID, thisSensorType);
